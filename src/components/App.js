@@ -3,6 +3,7 @@ import Header from './Header';
 import Order from './Order';
 import Inventory from './Inventory';
 import sampleFishes from '../sample-fishes'; // small case for "sample" becoz it's not a class
+import Fish from './Fish';
 
 class App extends React.Component {
   state = {
@@ -33,6 +34,12 @@ class App extends React.Component {
       <div className="catch-of-the-day">
         <div className="menu">
           <Header tagline="Fresh Seafood Market" />
+          <ul className="list-of-fishes">
+            {/* Turn object keys into array then map over it */}
+            {Object.keys(this.state.fishes).map(item => (
+              <Fish key={item} details={this.state.fishes[item]} />
+            ))}
+          </ul>
         </div>
         <Order />
         <Inventory
