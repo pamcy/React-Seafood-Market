@@ -8,6 +8,7 @@ import Fish from './Fish';
 class App extends React.Component {
   state = {
     fishes: {},
+    order: {},
   };
 
   addFish = fish => {
@@ -19,7 +20,22 @@ class App extends React.Component {
 
     // Set the new fishes object to state
     this.setState({
-      fishes: fishes,
+      fishes, // fishes: fishes (es5)
+    });
+  };
+
+  addToOrder = key => {
+    // Take a copy of existing state
+    const order = { ...this.state.order };
+
+    // Default amount is 1 (add to the order), or update the amount in order
+    // ex. order.fish1 = order.fish1 + 1 || 1
+    // If order.fish1 exists, then increment by 1, if not, then return 1
+    order[key] = order[key] + 1 || 1;
+
+    // Set the new order object to state
+    this.setState({
+      order, // order: order (es5)
     });
   };
 
@@ -37,7 +53,12 @@ class App extends React.Component {
           <ul className="list-of-fishes">
             {/* Turn object keys into array then map over it */}
             {Object.keys(this.state.fishes).map(item => (
-              <Fish key={item} details={this.state.fishes[item]} />
+              <Fish
+                key={item}
+                no={item}
+                details={this.state.fishes[item]}
+                addToOrder={this.addToOrder}
+              />
             ))}
           </ul>
         </div>
