@@ -17,7 +17,7 @@ class Fish extends React.Component {
         {/* The button will be disabled when the value is true --> the fish is unavailable */}
         <button
           disabled={!isAvailable}
-          onClick={() => this.props.addToOrder(this.props.no)}
+          onClick={() => this.props.addToOrder(this.props.id)}
         >
           {isAvailable ? 'Add to order' : 'Sold out!'}
         </button>
