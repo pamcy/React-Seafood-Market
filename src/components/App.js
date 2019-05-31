@@ -62,7 +62,7 @@ class App extends React.Component {
             ))}
           </ul>
         </div>
-        <Order />
+        <Order fishes={this.state.fishes} order={this.state.order} />
         <Inventory
           addFish={this.addFish}
           loadSampleFishes={this.loadSampleFishes}
@@ -95,4 +95,17 @@ state = {
   fishes3 = [], // array
   fishes4 = {}, // object
 }
+*/
+
+/*
+3. 傳遞好幾個 state 時，不想重複寫，如下：
+<Order fishes={this.state.fishes} order={this.state.order} />
+
+也可以改用 Object Spread Operator，會自動把裡面所有的 object 抽取出來
+<Order {...this.state} />
+
+如果在 console 裡面看結果會長這樣，和自己一個一個寫是一樣的結果
+{fishes: {…}, order: {…}}
+
+但不建議使用，雖然可以很快速把 state 裡面所有 object 全部抽取出來，但不是每個 state 裡的內容都會需要用到。
 */
