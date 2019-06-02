@@ -4,12 +4,31 @@ import Order from './Order';
 import Inventory from './Inventory';
 import sampleFishes from '../sample-fishes'; // small case for "sample" becoz it's not a class
 import Fish from './Fish';
+import base from '../base';
 
 class App extends React.Component {
   state = {
     fishes: {},
     order: {},
   };
+
+  /**
+   * Sync data between firebase and state when component is on the page
+   * https://github.com/tylermcginnis/re-base
+   */
+  componentDidMount() {
+    const { params } = this.props.match;
+
+    this.ref = base.syncState(`${params.storeId}/fishes`, {
+      context: this,
+      state: 'fishes',
+    })
+  }
+
+  // Clean up when you left the store （memory leak）
+  componentWillUnmount() {
+    base.removeBinding(this.ref);
+  }
 
   addFish = fish => {
     // Take a copy of the existing state
