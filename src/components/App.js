@@ -19,10 +19,25 @@ class App extends React.Component {
   componentDidMount() {
     const { params } = this.props.match;
 
+    const localStorageValue = localStorage.getItem(params.storeId);
+
+    if (localStorageValue) {
+      this.setState({
+        order: JSON.parse(localStorageValue), // Turn string into object
+      })
+    }
+
     this.ref = base.syncState(`${params.storeId}/fishes`, {
       context: this,
       state: 'fishes',
     })
+  }
+
+  componentDidUpdate() {
+    const { params } = this.props.match;
+
+    // Turn object into string
+    localStorage.setItem(params.storeId, JSON.stringify(this.state.order))
   }
 
   // Clean up when you left the store （memory leak）
@@ -117,7 +132,7 @@ state = {
 */
 
 /*
-3. 傳遞好幾個 state 時，不想重複寫，如下：
+3. 傳遞好幾個 state 時，不想重複寫，可以寫成如下：
 <Order fishes={this.state.fishes} order={this.state.order} />
 
 也可以改用 Object Spread Operator，會自動把裡面所有的 object 抽取出來
@@ -127,4 +142,26 @@ state = {
 {fishes: {…}, order: {…}}
 
 但不建議使用，雖然可以很快速把 state 裡面所有 object 全部抽取出來，但不是每個 state 裡的內容都會需要用到。
+*/
+
+
+/*
+4. componentDidMount
+
+裡面會執行將 localstorage 和 firebase 的資料寫入 state。由於 localstorage 在本機執行速度很快，firebase 還需要和 rebase 或 firebase 連線才能寫入 state，可能延遲一兩秒之後才回來，導致 order 的資料已經有了，最重要的 fishes 資料還沒回來顯示在畫面上，於是出現 “TypeError: Cannot read property 'status' of undefined” (in Order.js file)
+
+const isAvailable = fish.status === 'available'; --> 找不到 fish
+
+[解決方式]
+在 Order.js 加上以下就能解決
+const isAvailable = fish && fish.status === 'available'; (當有 fish 時，而且狀態是 available)
+
+但產生另一個問題，當 fish 的資料還沒回傳來時，Order 裡會先閃一下 "Sorry, fish is no longer available!" ，等到 fish 的資料來了，才會顯示 Order 內容 (fish 名稱和數量)
+
+[解決方式]
+在 Order.js 加上這行
+if (!fish) return null;
+
+// If there's no fish, then null will return nothing (Make sure the fish is loaded)
+
 */
