@@ -24,20 +24,20 @@ class App extends React.Component {
     if (localStorageValue) {
       this.setState({
         order: JSON.parse(localStorageValue), // Turn string into object
-      })
+      });
     }
 
     this.ref = base.syncState(`${params.storeId}/fishes`, {
       context: this,
       state: 'fishes',
-    })
+    });
   }
 
   componentDidUpdate() {
     const { params } = this.props.match;
 
     // Turn object into string
-    localStorage.setItem(params.storeId, JSON.stringify(this.state.order))
+    localStorage.setItem(params.storeId, JSON.stringify(this.state.order));
   }
 
   // Clean up when you left the store （memory leak）
@@ -56,6 +56,18 @@ class App extends React.Component {
     this.setState({
       fishes, // fishes: fishes (es5)
     });
+  };
+
+  updateFish = (id, updatedInfo) => {
+    // ES6 computed property name
+    const fishes = {
+      ...this.state.fishes,
+      [id]: updatedInfo,
+    };
+
+    // fishes[id] = fish; (same as above)
+
+    this.setState({ fishes });
   };
 
   addToOrder = id => {
@@ -98,7 +110,9 @@ class App extends React.Component {
         </div>
         <Order fishes={this.state.fishes} order={this.state.order} />
         <Inventory
+          fishes={this.state.fishes}
           addFish={this.addFish}
+          updateFish={this.updateFish}
           loadSampleFishes={this.loadSampleFishes}
         />
       </div>
@@ -143,7 +157,6 @@ state = {
 
 但不建議使用，雖然可以很快速把 state 裡面所有 object 全部抽取出來，但不是每個 state 裡的內容都會需要用到。
 */
-
 
 /*
 4. componentDidMount
