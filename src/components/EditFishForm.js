@@ -47,15 +47,15 @@ class EditFishForm extends React.Component {
           value={image}
           onChange={this.handleInputChange}
         />
-        <button type="submit">Remove Fish</button>
+        <button onClick={() => this.props.removeFish(this.props.id)}>
+          Remove Fish
+        </button>
       </div>
     );
   }
 }
 
 export default EditFishForm;
-
-
 
 // NOTE
 /*
@@ -67,7 +67,7 @@ const fish = {
   [e.currentTarget.name]: e.currentTarget.value,
 }
 
-為了讓 "changeFish" method (in App.js) 可以直接將每隻魚的全部資訊直接寫入 state，樓上的 "fish" object 不只含有使用者更新的 input name 和 input value，另外也 copy details 所有欄位，讓最後 fish 會包含所有 input 欄位送給 state（如下）。
+為了讓 "updateFish" method (in App.js) 可以直接將每隻魚的全部資訊直接寫入 state，樓上的 "fish" object 不只含有使用者更新的 input name 和 input value，另外也 copy details 所有欄位，讓最後 fish 會包含所有 input 欄位送給 state（如下）。
 
 {desc: "These tender, mouth-watering beauties are a fantastic hit at any dinner party.", image: "/images/lobster.jpg", name: "Lobster YEAHs", price: "6400", status: "unavailable"}
 

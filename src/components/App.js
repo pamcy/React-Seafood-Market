@@ -65,9 +65,28 @@ class App extends React.Component {
       [id]: updatedInfo,
     };
 
-    // fishes[id] = fish; (same as above)
+    // Same as above
+    // const fishes = { ...this.state.fishes };
+    // fishes[id] = fish;
 
     this.setState({ fishes });
+  };
+
+  removeFish = id => {
+    const fishes = {
+      ...this.state.fishes,
+      [id]: null, // Set the fish i don't want to "null" not "delete" (Use "null" becoz there's weird thing on Firebase)
+    };
+
+    // Same as above
+    // const fishes = { ...this.state.fishes };
+    // fishes[id] = null;
+
+    this.setState({ fishes });
+
+    const order = { ...this.state.order };
+    delete order[id];
+    this.setState({ order });
   };
 
   addToOrder = id => {
@@ -83,6 +102,13 @@ class App extends React.Component {
     this.setState({
       order, // order: order (es5)
     });
+  };
+
+  removeFromOrder = id => {
+    const order = { ...this.state.order };
+
+    delete order[id];
+    this.setState({ order });
   };
 
   loadSampleFishes = () => {
@@ -108,11 +134,16 @@ class App extends React.Component {
             ))}
           </ul>
         </div>
-        <Order fishes={this.state.fishes} order={this.state.order} />
+        <Order
+          fishes={this.state.fishes}
+          order={this.state.order}
+          removeFromOrder={this.removeFromOrder}
+        />
         <Inventory
           fishes={this.state.fishes}
           addFish={this.addFish}
           updateFish={this.updateFish}
+          removeFish={this.removeFish}
           loadSampleFishes={this.loadSampleFishes}
         />
       </div>
