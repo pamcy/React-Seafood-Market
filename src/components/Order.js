@@ -1,8 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { formatPrice } from '../helpers';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 class Order extends React.Component {
+  static propTypes = {
+    fishes: PropTypes.object,
+    order: PropTypes.object,
+    removeFromOrder: PropTypes.func,
+  };
+
   renderOrder = id => {
     const count = this.props.order[id];
     const fish = this.props.fishes[id];
@@ -83,8 +90,6 @@ class Order extends React.Component {
 }
 
 export default Order;
-
-
 
 // NOTE
 /*

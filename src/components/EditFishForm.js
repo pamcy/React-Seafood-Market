@@ -1,6 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class EditFishForm extends React.Component {
+  static propTypes = {
+    id: PropTypes.string,
+    details: PropTypes.shape({
+      name: PropTypes.string,
+      desc: PropTypes.string,
+      image: PropTypes.string,
+      status: PropTypes.string,
+      price: PropTypes.number,
+    }),
+    updateFish: PropTypes.func,
+    removeFish: PropTypes.func,
+  };
+
   /**
    * How to handling multiple inputs (ES6 computed property name)
    * https://reactjs.org/docs/forms.html#handling-multiple-inputs

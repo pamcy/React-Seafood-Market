@@ -1,9 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { getFunName } from '../helpers';
 
 class StorePicker extends React.Component {
   // Create empty ref. storeInput is as a property
   storeInput = React.createRef();
+
+  static propTypes = {
+    history: PropTypes.object,
+  };
 
   // If you want to access 'this' inside the custom method:
   // Instead of declaring a method, we shold declare a property which is going to set the arrow function, then property will bound to the instance.
@@ -44,8 +49,6 @@ class StorePicker extends React.Component {
 }
 
 export default StorePicker;
-
-
 
 // NOTE
 /*

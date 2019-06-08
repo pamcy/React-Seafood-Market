@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Header = props => (
   <header className="top">
@@ -16,9 +17,11 @@ const Header = props => (
   </header>
 );
 
+Header.propTypes = {
+  tagline: PropTypes.string.isRequired,
+};
+
 export default Header;
-
-
 
 // NOTE
 // 如果 Component 只有一個 render() method，不需要建立一個 class，可以改寫成 Stateless Component
