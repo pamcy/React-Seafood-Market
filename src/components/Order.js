@@ -79,11 +79,11 @@ class Order extends React.Component {
         <h2>Your Order</h2>
         <TransitionGroup component="ul" className="order">
           {orderIDs.map(this.renderOrder)}
-          <li className="total">
-            <strong>Total:</strong>
-            {formatPrice(total)}
-          </li>
         </TransitionGroup>
+        <div className="total">
+          <strong>Total:</strong>
+          {formatPrice(total)}
+        </div>
       </div>
     );
   }

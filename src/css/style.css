@@ -400,11 +400,6 @@ ul.order li button {
   margin-left: 5px;
   padding: 0;
 }
-ul.order li.total {
-  font-weight: 600;
-  border-bottom: 3px solid #000;
-  border-top: 3px double #000;
-}
 ul.order li.unavailable {
   text-decoration: line-through;
   background: #f8d0d2;
@@ -419,6 +414,19 @@ ul.order li span.count {
 }
 ul.order li span.count span {
   display: inline-block;
+}
+.total {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+          align-items: center;
+  padding: 2rem 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+  border-bottom: 3px solid #000;
+  border-top: 3px double #000;
 }
 .order-title {
   text-align: center;

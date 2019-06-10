@@ -130,10 +130,10 @@ ul.order
       line-height 1
       margin-left 5px
       padding 0
-    &.total
-      font-weight 600
-      border-bottom 3px solid black
-      border-top 3px double black
+    // &.total
+    //   font-weight 600
+    //   border-bottom 3px solid black
+    //   border-top 3px double black
     &.unavailable
       text-decoration line-through
       background lighten(red, 80%)
@@ -147,10 +147,15 @@ ul.order
         display inline-block
         // transition all 0.5s
 
-// .total
-//   font-weight 600
-//   border-bottom 3px solid black
-//   border-top 3px double black
+.total
+  display flex
+  justify-content space-between
+  align-items center
+  padding 2rem 0
+  font-size 1.4rem
+  font-weight 600
+  border-bottom 3px solid black
+  border-top 3px double black
 
 .order-title
   text-align center
