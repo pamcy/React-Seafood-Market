@@ -397,6 +397,7 @@ ul.order li button {
   border: 0;
   display: none;
   line-height: 1;
+  margin-left: 5px;
   padding: 0;
 }
 ul.order li.total {
