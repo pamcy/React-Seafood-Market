@@ -41,7 +41,7 @@ class StorePicker extends React.Component {
             defaultValue={getFunName()}
             required
           />
-          <button type="submit">Visit store 👉</button>
+          <button type="submit">Visit store →</button>
         </form>
       </React.Fragment>
     );
