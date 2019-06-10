@@ -22,7 +22,10 @@ class EditFishForm extends React.Component {
   handleInputChange = e => {
     const updatedFish = {
       ...this.props.details, // Take a copy of current fish detail
-      [e.currentTarget.name]: e.currentTarget.value, // overwrite the one thing that changed
+      [e.currentTarget.name]:
+        e.currentTarget.name === 'price'
+          ? parseFloat(e.currentTarget.value)
+          : e.currentTarget.value, // overwrite the one thing that changed
     };
 
     this.props.updateFish(this.props.id, updatedFish);
