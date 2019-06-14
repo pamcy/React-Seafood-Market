@@ -19,14 +19,19 @@ class Inventory extends React.Component {
   state = {
     uid: null,
     owner: null,
+    isLoading: false,
   };
 
   componentDidMount() {
+    this.setState({ isLoading: true });
+
     // Every time when refresh the page will automatically log the user in
     // https://firebase.google.com/docs/auth/web/start?authuser=0
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.handleAuth({ user });
+      } else {
+        this.setState({ isLoading: false });
       }
     });
   }
@@ -50,6 +55,7 @@ class Inventory extends React.Component {
     this.setState({
       uid: authData.user.uid,
       owner: store.owner || authData.user.uid,
+      isLoading: false,
     });
   };
 
@@ -78,6 +84,15 @@ class Inventory extends React.Component {
 
   render() {
     const logOutButton = <button onClick={this.logOut}>Log out</button>;
+
+    // 0. Fix loggin buttons always load on the first screen. The page can't find uid immediately while Firebase Auth is still handling the sign-in flow.
+    if (this.state.isLoading) {
+      return (
+        <div className="loader-wrapper">
+          <div className="loader" />
+        </div>
+      );
+    }
 
     // 1. Check if the user is not logged in
     if (!this.state.uid) {
@@ -109,7 +124,7 @@ class Inventory extends React.Component {
           />
         ))}
         <AddFishForm addFish={this.props.addFish} />
-        <button onClick={this.props.loadSampleFishes}>
+        <button className="load-sample" onClick={this.props.loadSampleFishes}>
           Load Sample Fishes
         </button>
       </div>
