@@ -10,7 +10,7 @@ I love what I build for this project each day, thanks Wes' [course](https://reac
 ![Login to dashboard](https://res.cloudinary.com/pamcy/image/upload/v1560505164/coding/seafood-dashboard-login.png)
 
 ### Add or modify content after loggin
-![Add or modify fishes](https://res.cloudinary.com/pamcy/image/upload/v1560505164/coding/seafood-dashboard-login.png)
+![Add or modify fishes](https://res.cloudinary.com/pamcy/image/upload/v1560505164/coding/seafood-dashboard.png)
 
 ## Installation
 1. Clone this repo
