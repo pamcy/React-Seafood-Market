@@ -9,16 +9,8 @@ I love what I build for this project each day, thanks Wes' [course](https://reac
 ### Login to dashboard
 ![Login to dashboard](https://res.cloudinary.com/pamcy/image/upload/v1560505164/coding/seafood-dashboard-login.png)
 
-### Add or modify content after loggin
+### Add or modify content after logging
 ![Add or modify fishes](https://res.cloudinary.com/pamcy/image/upload/v1560505164/coding/seafood-dashboard.png)
-
-## Installation
-1. Clone this repo
-2. Run `npm install`
-
-## Development
-1. `npm start`: Run the app in development mode.
-2. `npm run build`: Builds the app for production to the build folder.
 
 ## What I learned from this project
 - [x] Working with create-react-app
@@ -31,4 +23,12 @@ I love what I build for this project each day, thanks Wes' [course](https://reac
 - [x] Component validation with Proptypes
 - [x] Firebase Authentication
 - [x] Deploy to Netlify
+
+## Installation
+1. Clone this repo
+2. Run `npm install`
+
+## Development
+1. `npm start`: Run the app in development mode.
+2. `npm run build`: Builds the app for production to the build folder.
 
